@@ -2,8 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { connectToDatabase } = require("./config/database");
-const userRoutes = require("./routes/userRoutes")
-
+const userRoutes = require("./routes/userRoutes");
+const visaRoutes = require("./routes/VisaRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -15,7 +15,8 @@ app.use(express.json());
 connectToDatabase()
 
 // Routes 
-app.use("/", userRoutes)
+app.use("/", userRoutes);
+app.use("/visas", visaRoutes)
 
 // Root Endpoint 
 app.get("/", (req, res) => {
