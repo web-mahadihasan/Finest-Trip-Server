@@ -16,7 +16,7 @@ connectToDatabase()
 
 // Routes 
 app.use("/", userRoutes);
-app.use("/visas", visaRoutes)
+app.use("/", visaRoutes)
 
 // Root Endpoint 
 app.get("/", (req, res) => {
