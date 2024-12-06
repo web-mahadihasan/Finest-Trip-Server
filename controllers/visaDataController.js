@@ -5,13 +5,13 @@ const { client } = require("../config/database")
 const visaCollection = client.db("Finest_Trip").collection("Added_Visa")
 
 // Get all Visa 
-const getAllVisa = async (req, res) => {
+const getAllVisaData = async (req, res) => {
     const cursor = visaCollection.find()
     const result = await cursor.toArray()
     res.send(result)
 }
 // Get visa by ID 
-const getVisaById = async (req, res) => {
+const getVisaDataById = async (req, res) => {
     const id = req.params.id;
     const query = {_id: new ObjectId(id)}
     const visa = await visaCollection.findOne(query)
@@ -19,9 +19,21 @@ const getVisaById = async (req, res) => {
 }
 
 // Create Visa 
-const createVisa = async (req, res) => {
+const createVisaData = async (req, res) => {
     const visaData = req.body;
     const result = await visaCollection.insertOne(visaData);
     res.send(result)
 }
-module.exports = {getAllVisa, getVisaById, createVisa}
+
+// Update visa data 
+const updateVisaData = async (req, res) =>  {
+    const id = req.params.id
+}
+// Remove Visa 
+const removeVisaData = async (req, res) =>  {
+    const id = req.params.id
+    const query = {_id: new ObjectId(id)}
+    const remaining = await visaCollection.deleteOne(query)
+    res.send(remaining)
+}
+module.exports = {getAllVisaData, getVisaDataById, createVisaData, removeVisaData, updateVisaData}

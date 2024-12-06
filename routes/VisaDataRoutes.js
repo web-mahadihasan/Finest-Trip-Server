@@ -1,10 +1,11 @@
 const express = require("express");
-const { getAllVisa, createVisa, getVisaById } = require("../controllers/visaDataController");
+const { getAllVisaData, getVisaDataById, createVisaData, removeVisaData } = require("../controllers/visaDataController");
 
 const visaRouter = express.Router()
 
-visaRouter.get("/visas", getAllVisa);
-visaRouter.get("/visa-details/:id", getVisaById);
-visaRouter.post("/add-visa", createVisa);
+visaRouter.get("/visas", getAllVisaData);
+visaRouter.get("/visa-details/:id", getVisaDataById);
+visaRouter.post("/add-visa", createVisaData);
+visaRouter.delete("/delete-visa/:id", removeVisaData);
 
 module.exports = visaRouter;
