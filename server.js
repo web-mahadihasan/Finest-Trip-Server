@@ -2,8 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { connectToDatabase } = require("./config/database");
-const userRoutes = require("./routes/userRoutes");
-const visaRoutes = require("./routes/VisaRoutes");
+const visaApplicationRoutes = require("./routes/visaApplicationRoutes");
+const visaDataRoutes = require("./routes/VisaDataRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -15,8 +15,8 @@ app.use(express.json());
 connectToDatabase()
 
 // Routes 
-app.use("/", userRoutes);
-app.use("/", visaRoutes)
+app.use("/", visaApplicationRoutes);
+app.use("/", visaDataRoutes)
 
 // Root Endpoint 
 app.get("/", (req, res) => {

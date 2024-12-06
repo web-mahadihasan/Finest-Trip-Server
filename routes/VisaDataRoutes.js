@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllVisa, createVisa, getVisaById } = require("../controllers/visaController");
+const { getAllVisa, createVisa, getVisaById } = require("../controllers/visaDataController");
 
 const visaRouter = express.Router()
 
