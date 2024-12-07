@@ -2,7 +2,7 @@ const express = require("express");
 const { getAllApplication, createNewApplication, cancelApplication, getApplicationById } = require("../controllers/visaApplicationController");
 
 
-const applicationRouter = express.Router()
+const noRouter = express.Router()
 
 // Routes
 applicationRouter.get("/all-application", getAllApplication);
