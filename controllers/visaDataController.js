@@ -10,6 +10,12 @@ const getAllVisaData = async (req, res) => {
     const result = await cursor.toArray()
     res.send(result)
 }
+// get Lasted visa 
+const getLastedVisa = async (req, res) =>  {
+    const cursor = visaCollection.find().sort({ createdAt: -1 }).limit(6);
+    const result = await cursor.toArray()
+    res.send(result)
+}
 // Get visa by ID 
 const getVisaDataById = async (req, res) => {
     const id = req.params.id;
@@ -33,7 +39,6 @@ const updateVisaData = async (req, res) =>  {
     const options = { upsert: true };
     const updateData = {
         $set:{
-            visaTitle: data.visaTitle,
             countryImage: data.countryImage,
             countryName: data.countryName,
             processingTime: data.processingTime,
@@ -43,7 +48,8 @@ const updateVisaData = async (req, res) =>  {
             validity: data.validity,
             applicationMethod: data.applicationMethod,
             userEmail: data.userEmail,
-            userName: data.userName
+            userName: data.userName,
+            updateAt: data.updateAt
         }
     }
     const result = await visaCollection.updateOne(filter, updateData, options)
@@ -56,4 +62,4 @@ const removeVisaData = async (req, res) =>  {
     const remaining = await visaCollection.deleteOne(query)
     res.send(remaining)
 }
-module.exports = {getAllVisaData, getVisaDataById, createVisaData, removeVisaData, updateVisaData}
+module.exports = {getAllVisaData, getLastedVisa, getVisaDataById, createVisaData, removeVisaData, updateVisaData}
