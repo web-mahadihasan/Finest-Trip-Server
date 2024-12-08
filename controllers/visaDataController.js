@@ -30,6 +30,13 @@ const createVisaData = async (req, res) => {
     const result = await visaCollection.insertOne(visaData);
     res.send(result)
 }
+const myAddedVisa = async (req, res) =>  {
+    const email = req.params.email
+    const query = {userEmail: email}
+    const cursor = visaCollection.find(query)
+    const result = await cursor.toArray()
+    res.send(result)
+}
 
 // Update visa data 
 const updateVisaData = async (req, res) =>  {
@@ -62,4 +69,4 @@ const removeVisaData = async (req, res) =>  {
     const remaining = await visaCollection.deleteOne(query)
     res.send(remaining)
 }
-module.exports = {getAllVisaData, getLastedVisa, getVisaDataById, createVisaData, removeVisaData, updateVisaData}
+module.exports = {getAllVisaData, getLastedVisa, getVisaDataById, createVisaData, removeVisaData, updateVisaData, myAddedVisa}

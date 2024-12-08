@@ -23,6 +23,13 @@ const createNewApplication = async (req, res) => {
     const result = await applicationCollection.insertOne(user);
     res.send(result)
 }
+const myVisaApplication = async (req, res) =>  {
+    const email = req.params.email
+    const query = {userEmail: email}
+    const cursor = applicationCollection.find(query)
+    const result = await cursor.toArray()
+    res.send(result)
+}
 // Cancel & remove application
 const cancelApplication = async (req, res) => {
     const id = req.params.id
@@ -36,4 +43,5 @@ module.exports = {
     getApplicationById,
     createNewApplication,
     cancelApplication,
+    myVisaApplication
 }
